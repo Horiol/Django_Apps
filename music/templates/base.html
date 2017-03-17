@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'music/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'music/css/bootstrap-theme.css' %}">
+    <link rel="stylesheet" type="text/javascript" href="{% static 'music/js/bootstrap.js' %}">
+  </head>
+  <body>
+    <div class="content container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>

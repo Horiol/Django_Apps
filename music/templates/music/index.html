@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>Music Index</h1>
+
+  {% if genre_list %}
+    <ul>
+      {% for genre in genre_list %}
+        <li><a href="{% url 'genre' genre.genreid %}">{{ genre.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No music are available.</p>
+  {% endif %}
+{% endblock %}

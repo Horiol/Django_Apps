@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.views.generic import RedirectView
+from . import views
 
 urlpatterns = [
+    url(r'^$', RedirectView.as_view(url='music/', permanent=False)),
+    url(r'^music/$', views.IndexView.as_view(), name="index"),
+    url(r'^music/(?P<pk>[0-9]+)', views.GenreDetail.as_view(), name="genre"),
     url(r'^admin/', admin.site.urls),
 ]
