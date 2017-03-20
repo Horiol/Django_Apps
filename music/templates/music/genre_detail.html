@@ -1,4 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>{{ object.name }}</h1>
+  <h1>{{ genre.name }}</h1>
+  <ul>
+    {% for track in page_obj %}
+      <li>{{ track.name }}</li>
+    {% endfor %}
+  </ul>
+  <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% else %}
+                <a class="btn btn-link" disabled>previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% else %}
+                <a class="btn btn-link" disabled>next</a>
+            {% endif %}
+        </span>
+    </div>
 {% endblock %}

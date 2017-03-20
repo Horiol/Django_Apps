@@ -67,9 +67,15 @@ class Playlist(models.Model):
         db_table = 'Playlist'
 # Unable to inspect table 'PlaylistTrack'
 # The error was: 'NoneType' object has no attribute 'groups'
-# Unable to inspect table 'Track'
-# The error was: 'NoneType' object has no attribute 'groups'
 
+#TODO: Finish Track model
+class Track(models.Model):
+    trackid = models.IntegerField(db_column='TrackId', primary_key=True)
+    name = models.TextField(db_column='Name')
+    genreid = models.ForeignKey(Genre, db_column="GenreId")
+
+    class Meta:
+        db_table = 'Track'
 
 class DjangoMigrations(models.Model):
     id = models.IntegerField(primary_key=True)  # AutoField?
