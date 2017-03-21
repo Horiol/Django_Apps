@@ -21,7 +21,7 @@ class Artist(models.Model):
 class Album(models.Model):
     albumid = models.IntegerField(db_column='AlbumId', primary_key=True)
     title = models.TextField(db_column='title')
-    artistid = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    artistid = models.ForeignKey(Artist, on_delete=models.CASCADE, db_column="ArtistId")
 
     class Meta:
         managed = False
@@ -73,6 +73,8 @@ class Track(models.Model):
     trackid = models.IntegerField(db_column='TrackId', primary_key=True)
     name = models.TextField(db_column='Name')
     genreid = models.ForeignKey(Genre, db_column="GenreId")
+    albumid = models.ForeignKey(Album, db_column="AlbumId")
+    miliseconds = models.IntegerField(db_column="Milliseconds")
 
     class Meta:
         db_table = 'Track'
