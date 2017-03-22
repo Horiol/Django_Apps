@@ -68,7 +68,6 @@ class Playlist(models.Model):
 # Unable to inspect table 'PlaylistTrack'
 # The error was: 'NoneType' object has no attribute 'groups'
 
-#TODO: Finish Track model
 class Track(models.Model):
     trackid = models.IntegerField(db_column='TrackId', primary_key=True)
     name = models.TextField(db_column='Name')
