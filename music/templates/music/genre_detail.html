@@ -3,6 +3,7 @@
 {% block content %}
 
   <script>
+  /*
   function myFunction() {
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
@@ -26,7 +27,10 @@
         }
       }
     }
-  }
+  }*/
+  $(document).ready( function () {
+    $('#table').DataTable();
+} );
   </script>
 
   <a href="/" class="btn btn-link">Home</a>
@@ -34,12 +38,6 @@
 
   {{ chart.as_html }}
 
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon1">
-      <span class="glyphicon glyphicon-search"></span>
-    </span>
-    <input type="text" class="form-control" aria-describedby="basic-addon1" id="myInput" onkeyup="myFunction()" placeholder="Search for Track Name..">
-  </div>
   <br>
   <table class="table table-hover" id="table">
     <thead>
@@ -47,7 +45,7 @@
         <th>Track Name</th>
         <th>Artist Name</th>
         <th>Album</th>
-        <th>Track Duration (min.)</th>
+        <th>Track Duration</th>
       </tr>
     </thead>
     <tbody>
@@ -56,7 +54,7 @@
         <td>{{track.name}}</td>
         <td>{{track.albumid.artistid.name}}</td>
         <td>{{track.albumid.title}}</td>
-        <td>{{ track.miliseconds|intdiv:600|div:100 }}</td>
+        <td>{{ track.miliseconds|intdiv:600|div:100 }} min.</td>
       </tr>
       {% endfor %}
     </tbody>
