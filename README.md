@@ -24,5 +24,5 @@ pip install -r requirements.txt
 * Run server
 ```bash
 python manage.py runserver
-
-Then the application should be ready in <http://localhost:8000/>.
+```
+Then the application should be ready in http://localhost:8000/.
