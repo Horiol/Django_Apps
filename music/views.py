@@ -26,8 +26,19 @@ class GenreDetail(SingleObjectMixin, generic.ListView):
 
         data = Track.objects.raw("select Track.TrackId, Artist.Name as Artist, round(avg(Track.Milliseconds)/60000,2) as Avg_Miliseconds from Track, Album, Artist where Track.AlbumId = Album.AlbumId and Artist.ArtistId = Album.ArtistId and Track.GenreId = "+str(self.object.genreid)+" group by Artist.ArtistId;")
 
+        options = {
+            'animation':{
+                'duration': 1500,
+                'startup': 'true'
+            },
+            'legend':{
+                'position':'none'
+            },
+            'title':"Average Duration by Artist"
+        }
+
         data_source = ModelDataSource(data, fields=['Artist', 'Avg_Miliseconds'])
-        chart = BarChart(data_source, options={'legend':{'position':'none'}, 'title':"Average Duration by Artist"}, height=500, width="100%")
+        chart = BarChart(data_source, options=options, height=500, width="100%")
         context['chart'] = chart
 
         return context
