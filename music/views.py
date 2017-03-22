@@ -11,7 +11,7 @@ class IndexView(generic.ListView):
         return Genre.objects.all()
 
 class GenreDetail(SingleObjectMixin, generic.ListView):
-    paginate_by = 10
+    #paginate_by = 10
     template_name = "music/genre_detail.html"
 
     def get(self, request, *args, **kwargs):

@@ -6,6 +6,7 @@ For this project I used [Django](https://www.djangoproject.com/) framework for b
 * [Bootstrap](http://getbootstrap.com/)
 * [Graphos](https://github.com/agiliq/django-graphos)
 * [Mathfilters](https://github.com/dbrgn/django-mathfilters)
+* [DataTables](https://datatables.net/)
 
 ## Run project locally
 * Clone the project
