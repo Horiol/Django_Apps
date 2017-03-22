@@ -1,11 +1,46 @@
 {% extends 'base.html' %}
 {% load mathfilters %}
 {% block content %}
+
+  <script>
+  function myFunction() {
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td");
+      if (td) {
+        booleria = false;
+        for (var j = 0; j < td.length; j++) {
+          if(td[j].innerHTML.toUpperCase().indexOf(filter) > -1){
+            booleria = true;
+          }
+        }
+        if (booleria) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+  </script>
+
   <a href="/" class="btn btn-link">Home</a>
   <h1>{{ genre.name }}</h1>
 
   {{ chart.as_html }}
 
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">
+      <span class="glyphicon glyphicon-search"></span>
+    </span>
+    <input type="text" class="form-control" aria-describedby="basic-addon1" id="myInput" onkeyup="myFunction()" placeholder="Search for Track Name..">
+  </div>
+  <br>
   <table class="table table-hover" id="table">
     <thead>
       <tr>
@@ -16,7 +51,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for track in page_obj %}
+      {% for track in object_list %}
       <tr>
         <td>{{track.name}}</td>
         <td>{{track.albumid.artistid.name}}</td>
@@ -26,21 +61,4 @@
       {% endfor %}
     </tbody>
   </table>
-  <div class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}#table">previous</a>
-            {% else %}
-                <a class="btn btn-link" disabled>previous</a>
-            {% endif %}
-            <span class="current">
-                Page {{ page_obj.number }} of {{ paginator.num_pages }}.
-            </span>
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}#table">next</a>
-            {% else %}
-                <a class="btn btn-link" disabled>next</a>
-            {% endif %}
-        </span>
-    </div>
 {% endblock %}
