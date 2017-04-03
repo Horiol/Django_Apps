@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'music.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'Chinook_Sqlite.sqlite'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
