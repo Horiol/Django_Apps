@@ -69,7 +69,7 @@ WSGI_APPLICATION = 'music.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = False
 DATABASES = {
     'default': dj_database_url.config(
         default=config('DATABASE_URL')
