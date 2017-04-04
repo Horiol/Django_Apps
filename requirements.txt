@@ -12,6 +12,7 @@ gunicorn==19.7.0
 html5lib==0.999
 httplib2==0.9.1
 oauthlib==1.0.3
+gunicorn==19.7.0
 PyYAML==3.12
 requests==2.9.1
 urllib3==1.13.1
