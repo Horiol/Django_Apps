@@ -72,7 +72,7 @@ WSGI_APPLICATION = 'music.wsgi.application'
 DEBUG = False
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL')
+        default=config('postgres://wsexjfzocljgvt:aea7d2e624d5e75318abd330c67d54fa2e8b3bed907452292f56934d0b3d2bfc@ec2-176-34-111-152.eu-west-1.compute.amazonaws.com:5432/d2c6jm6rqo6r8v')
     )
 }
 
