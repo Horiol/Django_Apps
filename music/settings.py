@@ -11,17 +11,12 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-import dj_database_url
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '06&-9oe5o+jgg$41*owi_qvcgefgdjno61234z#7$k&vzeeokd'
+DEBUG = True
+
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -65,20 +60,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'music.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-DEBUG = False
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('postgres://wsexjfzocljgvt:aea7d2e624d5e75318abd330c67d54fa2e8b3bed907452292f56934d0b3d2bfc@ec2-176-34-111-152.eu-west-1.compute.amazonaws.com:5432/d2c6jm6rqo6r8v')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'Chinook_Sqlite.sqlite'),
+    }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -95,30 +82,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config()
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
+
+DEBUG = False
 
 try:
     from .local_settings import *
