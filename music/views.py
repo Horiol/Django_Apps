@@ -24,7 +24,10 @@ class GenreDetail(SingleObjectMixin, generic.ListView):
 
         #data = Track.objects.filter(genreid=self.object.genreid)
 
-        data = Track.objects.raw("select Track.TrackId, Artist.Name as Artist, round(avg(Track.Milliseconds)/60000,2) as Avg_Miliseconds from Track, Album, Artist where Track.AlbumId = Album.AlbumId and Artist.ArtistId = Album.ArtistId and Track.GenreId = "+str(self.object.genreid)+" group by Artist.ArtistId;")
+        data = Track.objects.raw(
+            f"select Track.TrackId, Artist.Name as Artist, round(avg(Track.Milliseconds)/60000,2) as Avg_Miliseconds from Track, Album, Artist where Track.AlbumId = Album.AlbumId and Artist.ArtistId = Album.ArtistId and Track.GenreId = {str(self.object.genreid)} group by Artist.ArtistId;"
+        )
+
 
         options = {
             'animation':{
